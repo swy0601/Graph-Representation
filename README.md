@@ -1,10 +1,11 @@
- lines (132 sloc)  11.7 KB
+lines (132 sloc)  11.7 KB
 
 # UNDETERMINED
 
 The code is tested on Windows 10 environment (Python3.7, PyTorch_1.11.0) with GPU 2060.
 
 ## Contents
+
 1. [Introduction](#introduction)
 2. [Train](#train)
 3. [Test](#test)
@@ -13,16 +14,24 @@ The code is tested on Windows 10 environment (Python3.7, PyTorch_1.11.0) with GP
 6. [Acknowledgements](#acknowledgements)
 
 ## Usage
-### Please see code comments for more details 
+
+### Please see code comments for more details
+
 ### Quick start: Test after train
-1. Unzip file in '/Dataset/Packaged Pkl'.
+
+1. Download processed dataset from [Google Driver](https://drive.google.com/drive/folders/1n9o0onE8LbdUjymYFFgkdvRnmbnXVmHC?usp=sharing)
+, place it in '/Dataset/Packaged Pkl/'.
+
+   Note: You can also process the java-json dataset yourself.
 
 2. Cd to '/Code', run the following script.
 
 ```bash
     python model_DMon-3.py
 ```
+
 ### Directly handle results stored in txt files
+
 1. Ensure there is a result file generated.
 
 2. Cd to '/Code/utils', run the following script.
