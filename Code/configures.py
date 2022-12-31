@@ -32,42 +32,6 @@ class ModelParser(Tap):
     model_name = 'dmon'
 
 
-# class ModelParser1(Tap):
-#     device: str = "cuda"
-#     checkpoint: str = 'checkpoint'
-#     hidden_channels: int = 256
-#     mlp_hidden: int = 64
-#     model_name = 'dmon'
-#
-# class ModelParser2(Tap):
-#     device: str = "cuda"
-#     checkpoint: str = 'checkpoint'
-#     hidden_channels: int = 64
-#     mlp_hidden: int = 64
-#     model_name = 'dmon'
-#
-# class ModelParser3(Tap):
-#     device: str = "cuda"
-#     checkpoint: str = 'checkpoint'
-#     hidden_channels: int = 128
-#     mlp_hidden: int = 32
-#     model_name = 'dmon'
-#
-# class ModelParser4(Tap):
-#     device: str = "cuda"
-#     checkpoint: str = 'checkpoint'
-#     hidden_channels: int = 128
-#     mlp_hidden: int = 18
-#     model_name = 'dmon'
-#
-# class ModelParser5(Tap):
-#     device: str = "cuda"
-#     checkpoint: str = 'checkpoint'
-#     hidden_channels: int = 128
-#     mlp_hidden: int = 64
-#     model_name = 'dmon'
-
-
 data_args = DataParser().parse_args(known_only=True)
 print(data_args.dataset_dir)
 train_args = TrainParser().parse_args(known_only=True)
