@@ -1,8 +1,6 @@
-lines (132 sloc)  11.7 KB
-
 # UNDETERMINED
 
-The code is tested on Windows 10 environment (Python3.7, PyTorch_1.11.0) with GPU 2060.
+the results are run on a server with CPU 2.8 GHz Intel Core i7, 16GB RAM.
 
 ## Contents
 
@@ -19,25 +17,26 @@ The code is tested on Windows 10 environment (Python3.7, PyTorch_1.11.0) with GP
 
 ### Quick start: Test after train
 
-1. Download processed dataset from [Google Driver](https://drive.google.com/drive/folders/1n9o0onE8LbdUjymYFFgkdvRnmbnXVmHC?usp=sharing)
-, place it in '/Dataset/Packaged Pkl/'.
+1. Download processed dataset
+   from [Google Driver](https://drive.google.com/file/d/1UdKI5R_yTBlV4tO5uDKcGJazg_SiTwKT/view?usp=sharing)
+   , place it in '/Dataset/Packaged Pkl/'.
 
    Note: You can also process the java-json dataset yourself.
 
 2. Cd to '/Code', run the following script.
 
 ```bash
-    python model_DMon-3.py
+    python train.py
 ```
 
-### Directly handle results stored in txt files
+### Build PKL yourself, you can customize the extra edges
 
 1. Ensure there is a result file generated.
 
-2. Cd to '/Code/utils', run the following script.
+2. Cd to '/Code', run the following script.
 
 ```bash
-    python data_handle.py
+    python code_dataset.py
 ```
 
 ## Detail Package Version
