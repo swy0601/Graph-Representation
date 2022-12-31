@@ -63,3 +63,9 @@ class DMon(torch.nn.Module):
             if k in original_state_dict.keys():
                 loaded_state_dict[k] = v
         self.load_state_dict(loaded_state_dict)
+
+# torch.nn.Sigmoid()
+# torch.nn.LeakyReLU()
+# torch.nn.Relu()
+# torch.nn.ELU()
+# torch.nn.SELU()
