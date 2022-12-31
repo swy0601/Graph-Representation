@@ -15,7 +15,7 @@ the results are run on a server with CPU 2.8 GHz Intel Core i7, 16GB RAM.
 
 ### Please see code comments for more details
 
-### Quick start: Test after train
+### Quick start: Train
 
 1. Download processed dataset
    from [Google Driver](https://drive.google.com/file/d/1UdKI5R_yTBlV4tO5uDKcGJazg_SiTwKT/view?usp=sharing)
