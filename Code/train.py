@@ -125,10 +125,8 @@ def test(valid_dataloader, gnnNets, criterion):
         F1 = f1_score(list(label_all), list(prob_all), average='macro')
         # AUC
         # labels = [0, 1, 2]
-        # label_all_for_auc = label_binarize(label_all, classes=labels)
-        # prob_all_for_auc = label_binarize(prob_all, classes=labels)
-        label_all_for_auc = [0 if i == 0 else 1 for i in list(label_all)]
-        prob_all_for_auc = [0 if i == 0 else 1 for i in list(prob_all)]
+        label_all_for_auc = label_binarize(label_all, classes=labels)
+        prob_all_for_auc = label_binarize(prob_all, classes=labels)
         AUC = roc_auc_score(label_all_for_auc, prob_all_for_auc, average='macro')
         # MCC
         MCC = matthews_corrcoef(list(label_all), list(prob_all))
@@ -185,7 +183,7 @@ def save_best(ckpt_dir, epoch, gnnNets, model_name, valid_acc, is_best, k_fold):
     gnnNets.to('cuda')
 
 
-def cross_train(avg_num_nodes):
+def cross_train():
     start_time = process_time()
     dataloader_list = get_cross_dataloader(data_args)
     k_fold_acc = []
@@ -199,7 +197,7 @@ def cross_train(avg_num_nodes):
         dataloader = dataloader_list[i]
 
         print('start training model with fold ', i)
-        gnnNets = DMon(data_args, model_args, avg_num_nodes)
+        gnnNets = DMon(data_args, model_args)
         gnnNets.to('cuda')
 
         criterion = nn.CrossEntropyLoss()
@@ -309,7 +307,7 @@ if __name__ == "__main__":
     test_j = 0
     time_j = 0
     for i in range(10):
-        v, t, time = cross_train(150)
+        v, t, time = cross_train()
         valid_j = valid_j + v
         test_j = test_j + t
         time_j = time_j + time
@@ -321,40 +319,3 @@ if __name__ == "__main__":
     print(valid_list)
     print(test_list)
     print(time_list)
-
-    plt.figure(figsize=(25, 5))
-    plt.plot(range(50, 350, 50), valid_list, color='#dca037', marker='o', markersize=10, label="valid accuracy")
-    plt.show()
-
-    plt.figure(figsize=(25, 5))
-    plt.plot(range(50, 350, 50), test_list, color='#a9dbfa', marker='o', markersize=10, label="valid accuracy")
-    plt.show()
-
-    plt.figure(figsize=(25, 5))
-    plt.plot(range(50, 350, 50), time_list, color='#b47bde', marker='o', markersize=10, label="valid accuracy")
-    plt.show()
-
-    plt.figure(figsize=(25, 5))
-    plt.plot(range(50, 350, 50), valid_list, color='#dca037', marker='o', markersize=10, label="valid")
-    plt.plot(range(50, 350, 50), test_list, color='#a9dbfa', marker='o', markersize=10, label="test")
-    plt.show()
-
-    # # report test msg
-    # ckpt_dir = f"./checkpoint/{data_args.dataset_name}/"
-    # gnnNets = DMon(data_args, model_args)
-    # dataset = get_dataset(data_args.dataset_dir)
-    # dataloader = get_dataloader(dataset, data_args)
-    # criterion = nn.CrossEntropyLoss()
-    # checkpoint = torch.load(os.path.join(ckpt_dir, f'{model_args.model_name}_latest.pth'))
-    # gnnNets.update_state_dict(checkpoint['net'])
-    # test_state = test(dataloader['valid'], gnnNets, criterion)
-    # print(f"Test: | Loss: {test_state['loss']:.3f} | Acc: {test_state['acc']:.3f}")
-
-    # dataset = pd.read_pickle(data_args.dataset_dir)
-    # dataset = InputDataset(dataset)
-    # num_nodes = 0
-    # for date in dataset:
-    #     num_nodes += date.x.shape[0]
-    #
-    # avg = num_nodes / len(dataset)
-    # print(avg)

@@ -5,7 +5,7 @@ from typing import List
 
 
 class DataParser(Tap):
-    dataset_dir: str = 'Data/input_control_type1.pkl'
+    dataset_dir: str = './Dataset/Packaged Pkl/input_control_type1.pkl'
     dataset_name = 'code_hh'
     num_node_features: int = 840
     num_classes: int = 3
@@ -33,6 +33,6 @@ class ModelParser(Tap):
 
 
 data_args = DataParser().parse_args(known_only=True)
-print(data_args.dataset_dir)
+print("Dataset using:", data_args.dataset_dir)
 train_args = TrainParser().parse_args(known_only=True)
 model_args = ModelParser().parse_args(known_only=True)

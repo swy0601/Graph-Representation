@@ -8,12 +8,12 @@ import torch.nn.functional as F
 
 class DMon(torch.nn.Module):
 
-    def __init__(self, data_args, model_args, avg_num_nodes):
+    def __init__(self, data_args, model_args):
         super().__init__()
 
         self.in_channels = data_args.num_node_features
         self.out_channels = data_args.num_classes
-        self.avg_num_nodes = avg_num_nodes
+        self.avg_num_nodes = data_args.avg_num_nodes
 
         self.hidden_channels = model_args.hidden_channels
         self.mlp_hidden = model_args.mlp_hidden
